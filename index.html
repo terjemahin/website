@@ -181,13 +181,14 @@
 
                 const button = document.getElementById('theme-button');
                 const body = document.body;
-                const iframe = document.querySelector('#disqus-thread iframe');
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
                 button.addEventListener('click', () => {
                     body.classList.toggle('light');
-
-                    iframeDoc.body.style.color = '#FF0000FF';
+                    var disqus_config = function () {
+                        this.page.url = PAGE_URL;
+                        this.page.identifier = PAGE_IDENTIFIER;
+                        this.theme = 'light'; // Pilihan: 'light' atau 'dark'
+                    };
                     if (body.classList.contains('light')) {
                         button.textContent = ' 💤 ';
                     } else {
