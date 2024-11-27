@@ -7,42 +7,72 @@
     <title>Chapter 2400 - Chapter 2400: Chapter 2400-return</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .tooltip {
-            position: relative;
-            cursor: pointer;
-        }
-    
-        .tooltip::after {
-            content: attr(tl-text);
-            background-color: rgb(38, 42, 43);
-            color: rgb(232, 230, 227);
-            visibility: hidden;
-            border-radius: 5px;
-            padding: 18px;
-            position: absolute;
-            bottom: 118%;
-            left: 0;
-            white-space: normal;
-            width: auto;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-    
-        .tooltip:hover::after {
-            visibility: visible;
-            opacity: 1;
-        }
- 
-        .tooltip.clicked::after {
-            visibility: hidden;
-            opacity: 0;
+        /* Default styles */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -283px;
+            width: 283px;
+            height: 100%;
+            background-color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 999;
         }
 
-        .tooltip.disabled::after {
-            visibility: hidden !important;
-            opacity: 0 !important;
+        .sidebar.open {
+            left: 0;
         }
+
+        .close-btn {
+            position: relative;
+            top: -23px;
+            left: 210px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .json-result {
+            margin-top: 20px;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #jsonContent {
+            background-color: #222;
+            padding: 10px;
+            color: #fff;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        #jsonContent a {
+            color: #f9f9f9;
+            padding: 10px 15px; 
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+
+        #jsonContent a:hover {
+            background-color: #b49b83; /* Warna latar saat hover */
+            color: white; /* Warna teks saat hover */
+        }
+
     </style>
 </head>
 
@@ -88,7 +118,25 @@
                 <p class="tooltip" tl-text="“A fool?”">"Bodoh?"</p>
                 <p class="tooltip" tl-text="Lei BA glared fiercely a little lost and pointed at him, “You’re the one who killed my son!”">Lei BA menatap tajam ke arah si bodoh kecil itu dan menunjuk ke arahnya, “” Kaulah yang membunuh anakku!”</p>
             </div>
-            <hr/>※ Chapter 2400
+            <hr/><span id="sidebarToggle" title="Open chapter list">※ Chapter 2400</span>
+
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar">
+                <button id="closeSidebar" class="close-btn">×</button>
+                <h2>List Chapter</h2>
+                <select id="dropdown" class="dropdown">
+                    <option value="">Pilih Chapter</option>
+                    <option value="data1">Chapter 100</option>
+                    <option value="data2">Chapter 200</option>
+                    <option value="data3">Chapter 300</option>
+                </select>
+                <div id="jsonResult" class="json-result">
+                    <h3> URL LINK</h3>
+                    <pre id="jsonContent"></pre>
+                </div>
+            </div>
+
+
             <div class=btn>
                 <input type="checkbox" id=prev />
                 <label for="prev" href="javascript:void(0)" onclick='xOpen("2399")'>
@@ -131,7 +179,7 @@
                 button.addEventListener('click', () => {
                     body.classList.toggle('light');
                     if (body.classList.contains('light')) {
-                        button.textContent = ' 🛏️ ';
+                        button.textContent = ' 💤 ';
                     } else {
                         button.textContent = '🕯️';
                     }
@@ -170,6 +218,89 @@
                     // Perbarui teks tombol
                     toggleButton.textContent = tooltipEnabled ? '❤️' : '💔';
                 });
+
+
+
+
+
+
+
+
+                    // Mengambil elemen tombol dan sidebar
+                    const sidebarToggleBtn = document.getElementById('sidebarToggle');
+                    const sidebar = document.getElementById('sidebar');
+
+
+                    document.getElementById('closeSidebar').addEventListener('click', function () {
+                        document.getElementById('sidebar').classList.remove('open');
+                    });
+
+                    // Fungsi untuk toggle sidebar
+                    sidebarToggleBtn.addEventListener('click', function () {
+                        sidebar.classList.toggle('open');
+                    });
+    const jsonData = {
+        "Chapter 0001-0010": [
+            { bab: "※Chapter 0001※", url: "https://contoh.com/bab1" },
+            { bab: "※Chapter 0002※", url: "https://contoh.com/bab2" },
+            { bab: "※Chapter 0003※", url: "https://contoh.com/bab3" },
+            { bab: "※Chapter 0004※", url: "https://contoh.com/bab4" },
+            { bab: "※Chapter 0005※", url: "https://contoh.com/bab5" },
+            { bab: "※Chapter 0006※", url: "https://contoh.com/bab6" },
+            { bab: "※Chapter 0007※", url: "https://contoh.com/bab7" },
+            { bab: "※Chapter 0008※", url: "https://contoh.com/bab8" },
+            { bab: "※Chapter 0009※", url: "https://contoh.com/bab9" },
+            { bab: "※Chapter 0010※", url: "https://contoh.com/bab10" }
+        ],
+        "Chapter 0011-0020": [
+            { bab: "※Chapter 0011", url: "https://contoh.com/bab11" },
+            { bab: "※Chapter 0012", url: "https://contoh.com/bab12" },
+            { bab: "※Chapter 0013", url: "https://contoh.com/bab13" },
+            { bab: "※Chapter 0014", url: "https://contoh.com/bab14" },
+            { bab: "※Chapter 0015", url: "https://contoh.com/bab15" },
+            { bab: "※Chapter 0016", url: "https://contoh.com/bab16" },
+            { bab: "※Chapter 0017", url: "https://contoh.com/bab17" },
+            { bab: "※Chapter 0018", url: "https://contoh.com/bab18" },
+            { bab: "※Chapter 0019", url: "https://contoh.com/bab19" },
+            { bab: "※Chapter 0020", url: "https://contoh.com/bab20" }
+        ]
+    };
+    const dropdown = document.getElementById('dropdown');
+    const jsonContent = document.getElementById('jsonContent');
+
+    // Mengisi dropdown dengan kelompok bab
+    function populateDropdown(data) {
+        dropdown.innerHTML = '<option value="">Pilih Chapter</option>';
+        for (const group in data) {
+            const option = document.createElement('option');
+            option.value = group;
+            option.textContent = group;
+            dropdown.appendChild(option);
+        }
+    }
+
+    // Menampilkan daftar link Chapter 00saat dropdown dipilih
+    dropdown.addEventListener('change', function () {
+        const selectedGroup = this.value;
+        jsonContent.innerHTML = ""; // Reset konten
+
+        if (selectedGroup && jsonData[selectedGroup]) {
+            const selectedData = jsonData[selectedGroup];
+            selectedData.forEach(item => {
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.textContent = item.bab;
+                link.target = "_blank"; // Buka di tab baru
+                link.style.display = "block"; // Agar setiap link berada di baris baru
+                jsonContent.appendChild(link);
+            });
+        }
+    });
+
+    // Panggil fungsi untuk mengisi dropdown
+    populateDropdown(jsonData);
+
+
 
             </script>
         </section>
