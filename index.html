@@ -181,6 +181,8 @@
 
                 const button = document.getElementById('theme-button');
                 const body = document.body;
+                const PAGE_URL = window.location.href;
+                const PAGE_IDENTIFIER = document.title;
 
                 button.addEventListener('click', () => {
                     body.classList.toggle('light');
