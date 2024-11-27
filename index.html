@@ -184,19 +184,37 @@
                 const PAGE_URL = window.location.href;
                 const PAGE_IDENTIFIER = document.title;
 
-                button.addEventListener('click', () => {
-                    body.classList.toggle('light');
-                    var disqus_config = function () {
-                        this.page.url = PAGE_URL;
-                        this.page.identifier = PAGE_IDENTIFIER;
-                        this.theme = 'light'; // Pilihan: 'light' atau 'dark'
-                    };
-                    if (body.classList.contains('light')) {
-                        button.textContent = ' 💤 ';
-                    } else {
-                        button.textContent = '🕯️';
+                    // Fungsi untuk me-reset Disqus dengan tema baru
+                    function reloadDisqusTheme(theme) {
+                        var disqus_config = function () {
+                            this.page.url = PAGE_URL; // URL Halaman
+                            this.page.identifier = PAGE_IDENTIFIER; // Identifier Halaman
+                            this.theme = theme; // Set tema sesuai
+                        };
+
+                        // Muat ulang Disqus
+                        DISQUS.reset({
+                            reload: true,
+                            config: disqus_config
+                        });
                     }
-                });
+
+                    // Event Listener untuk tombol
+                    button.addEventListener('click', () => {
+                        body.classList.toggle('light'); // Mengubah tema halaman
+
+                        // Tentukan tema baru
+                        const currentTheme = body.classList.contains('light') ? 'light' : 'dark';
+                        if (body.classList.contains('light')) {
+                            button.textContent = ' 💤 ';
+                        } else {
+                            button.textContent = '🕯️';
+                        }
+
+                        // Perbarui tema di Disqus
+                        reloadDisqusTheme(currentTheme);
+                    });
+
 
 
 
