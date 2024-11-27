@@ -9,22 +9,20 @@
     <style>
         .tooltip {
             position: relative;
-            display: inline-block;
             cursor: pointer;
         }
     
         .tooltip .tooltip-text {
+            background-color: rgb(38, 42, 43);
+            color: rgb(232, 230, 227);
             visibility: hidden;
-            background-color: #333;
-            color: #fff;
             border-radius: 5px;
             padding: 18px;
             position: absolute;
             bottom: 118%;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             white-space: normal;
-            min-width: 100%; 
+            width: auto;
             z-index: 1;
             opacity: 0;
             transition: opacity 0.3s;
@@ -33,6 +31,16 @@
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
+        }
+ 
+        .tooltip.clicked .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .tooltip.disabled .tooltip-text {
+            visibility: hidden !important;
+            opacity: 0 !important;
         }
     </style>
 </head>
@@ -54,6 +62,7 @@
                 <button> A+ </button>
                 <button> A- </button>
                 <button> 🕯️ </button>
+                <button id="toggle-tooltip">Toggle Tooltip</button>
             </div>
 
             <div class="info">
@@ -64,7 +73,7 @@
             <div class="text">
                 <p><strong>Chapter 2400: Return</strong></p>
                 <p class="tooltip">“Ah!”
-                    <span class="tooltip-text">"Ah!"</span>
+                    <span class="tooltip-text">"Bagiamana mungkin itu bisa!"</span>
                 </p>
                 <p class="tooltip">Lei BA tiba-tiba memegangi kepalanya, matanya merah saat dia meraung, “” Tidak mungkin! Mengapa petir surgawi hanya
                     menyambar anak saya dan bukan Anda? Pasti keluarga SU yang berencana membunuh anakku!”
@@ -106,6 +115,38 @@
             <hr/>
             <div id="disqus_thread"></div>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/terjemahin/assets@latest/src/main.js"></script>
+            <script type="text/javascript">
+                document.querySelectorAll('.tooltip').forEach(tooltip => {
+                        tooltip.addEventListener('click', () => {
+                            tooltip.classList.toggle('clicked'); // Menambahkan/menghapus kelas 'clicked'
+                        });
+
+                        tooltip.addEventListener('mouseleave', () => {
+                            tooltip.classList.remove('clicked'); // Menghapus kelas 'clicked' ketika mouse meninggalkan elemen
+                        });
+                    });
+
+                const toggleButton = document.getElementById('toggle-tooltip');
+                    const tooltips = document.querySelectorAll('.tooltip');
+
+                    let tooltipEnabled = true;
+
+                    // Toggle tooltip untuk semua elemen
+                    toggleButton.addEventListener('click', () => {
+                        tooltipEnabled = !tooltipEnabled; // Ganti status
+                        tooltips.forEach(tooltip => {
+                            if (tooltipEnabled) {
+                                tooltip.classList.remove('disabled'); // Aktifkan tooltip
+                            } else {
+                                tooltip.classList.add('disabled'); // Nonaktifkan tooltip
+                            }
+                        });
+
+                        // Perbarui teks tombol
+                        toggleButton.textContent = tooltipEnabled ? 'Disable Tooltip' : 'Enable Tooltip';
+                    });
+
+            </script>
         </section>
     </main>
 
