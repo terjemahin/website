@@ -23,13 +23,19 @@ body.light .content {
     background-color: #f2f2f2;
 }
 
+body.light .content #disqus_thread {
+    color: #111010;
+}
+
 body.light header,
 body.light footer {
     color: #fff;
 }
 
+
 a {
     color: #222;
+    text-decoration: none;
 }
 
 /* Header */
@@ -104,7 +110,7 @@ button:hover {
 }
 
 .text {
-    font-size: 22px;
+    font-size: 20px;
     transition: font-size 0.4s ease;
 }
 
@@ -126,7 +132,42 @@ footer {
 
 
 
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
 
+.tooltip::after {
+    content: attr(tl-text);
+    background-color: rgb(38, 42, 43);
+    color: rgb(232, 230, 227);
+    visibility: hidden;
+    border-radius: 5px;
+    padding: 18px;
+    position: absolute;
+    bottom: 118%;
+    left: 0;
+    white-space: normal;
+    width: auto;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip.clicked::after {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.tooltip.disabled::after {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
 
 
 
@@ -147,7 +188,8 @@ input[type="checkbox"] {
 }
 
 hr {
-    margin-bottom: 25px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #c2c6cc;
 }
 
 label {
@@ -162,7 +204,6 @@ label {
     letter-spacing: 0.04rem;
     padding: 0.4rem 0.9rem;
     margin-top: 1.37rem;
-    cursor: pointer;
     border-radius: 0.4rem;
     border: 0.3rem solid #48443b96;
     background: #444;
