@@ -29,8 +29,8 @@
 
         .close-btn {
             position: relative;
-            top: -23px;
-            left: 210px;
+            top: -20px;
+            left: 187px;
             font-size: 30px;
             background: none;
             border: none;
@@ -50,6 +50,8 @@
             background-color: #444;
             padding: 10px;
             border-radius: 5px;
+            text-align: center;
+            display: none;
         }
 
         #jsonContent {
@@ -62,9 +64,8 @@
 
         #jsonContent a {
             color: #f9f9f9;
-            padding: 10px 15px;
-            font-size: 18px;
-            border-radius: 5px;
+            padding: 10px 15px; 
+            border-radius: 8px;
             transition: background-color 0.3s, color 0.3s; 
         }
 
@@ -132,7 +133,7 @@
                     <option value="data3">Chapter 300</option>
                 </select>
                 <div id="jsonResult" class="json-result">
-                    <h3> URL LINK</h3>
+                    <h3>URL LINK</h3>
                     <pre id="jsonContent"></pre>
                 </div>
             </div>
@@ -286,6 +287,9 @@
         jsonContent.innerHTML = ""; // Reset konten
 
         if (selectedGroup && jsonData[selectedGroup]) {
+            // Pastikan elemen '.json-result' diubah display-nya
+            document.querySelector('.json-result').style.display = "block";
+
             const selectedData = jsonData[selectedGroup];
             selectedData.forEach(item => {
                 const link = document.createElement('a');
@@ -295,8 +299,12 @@
                 link.style.display = "block"; // Agar setiap link berada di baris baru
                 jsonContent.appendChild(link);
             });
+        } else {
+            // Sembunyikan elemen '.json-result' jika tidak ada pilihan valid
+            document.querySelector('.json-result').style.display = "none";
         }
     });
+
 
     // Panggil fungsi untuk mengisi dropdown
     populateDropdown(jsonData);
