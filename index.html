@@ -51,7 +51,9 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
-            display: none;
+            display: none; 
+            max-height: calc(77vh - 17px);
+            overflow-y: auto;
         }
 
         #jsonContent {
@@ -65,6 +67,7 @@
         #jsonContent a {
             color: #f9f9f9;
             padding: 10px 15px; 
+            font-size: 18px;
             border-radius: 8px;
             transition: background-color 0.3s, color 0.3s; 
         }
@@ -74,6 +77,7 @@
             background-color: #b49b83; /* Warna latar saat hover */
             color: white; /* Warna teks saat hover */
         }
+        
 
     </style>
 </head>
@@ -94,7 +98,7 @@
             <div class="controls">
                 <button id="increaseFont" title="Increase font +1px"> A+ </button>
                 <button id="decreaseFont" title="Decrease font -1px"> A- </button>
-                <button id="theme-button" title="Mode Theme"> 🕯️ </button>
+                <button id="theme-button" title="Switch Theme"> 🕯️ </button>
                 <button id="toggle-tooltip" title="Turn on/ off tooltip">❤️</button>
             </div>
 
@@ -177,9 +181,13 @@
 
                 const button = document.getElementById('theme-button');
                 const body = document.body;
+                const iframe = document.querySelector('#disqus-thread iframe');
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
                 button.addEventListener('click', () => {
                     body.classList.toggle('light');
+
+                    iframeDoc.body.style.color = '#FF0000FF';
                     if (body.classList.contains('light')) {
                         button.textContent = ' 💤 ';
                     } else {
@@ -252,19 +260,39 @@
             { bab: "※Chapter 0007※", url: "https://contoh.com/bab7" },
             { bab: "※Chapter 0008※", url: "https://contoh.com/bab8" },
             { bab: "※Chapter 0009※", url: "https://contoh.com/bab9" },
-            { bab: "※Chapter 0010※", url: "https://contoh.com/bab10" }
+            { bab: "※Chapter 0010※", url: "https://contoh.com/bab10"},
+            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
+            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
+            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
+            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
+            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
+            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
+            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
+            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
+            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
+            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" }
         ],
         "Chapter 0011-0020": [
-            { bab: "※Chapter 0011", url: "https://contoh.com/bab11" },
-            { bab: "※Chapter 0012", url: "https://contoh.com/bab12" },
-            { bab: "※Chapter 0013", url: "https://contoh.com/bab13" },
-            { bab: "※Chapter 0014", url: "https://contoh.com/bab14" },
-            { bab: "※Chapter 0015", url: "https://contoh.com/bab15" },
-            { bab: "※Chapter 0016", url: "https://contoh.com/bab16" },
-            { bab: "※Chapter 0017", url: "https://contoh.com/bab17" },
-            { bab: "※Chapter 0018", url: "https://contoh.com/bab18" },
-            { bab: "※Chapter 0019", url: "https://contoh.com/bab19" },
-            { bab: "※Chapter 0020", url: "https://contoh.com/bab20" }
+            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
+            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
+            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
+            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
+            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
+            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
+            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
+            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
+            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
+            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" },
+            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
+            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
+            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
+            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
+            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
+            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
+            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
+            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
+            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
+            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" }
         ]
     };
     const dropdown = document.getElementById('dropdown');
