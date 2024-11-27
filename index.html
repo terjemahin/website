@@ -12,7 +12,8 @@
             cursor: pointer;
         }
     
-        .tooltip .tooltip-text {
+        .tooltip::after {
+            content: attr(tl-text);
             background-color: rgb(38, 42, 43);
             color: rgb(232, 230, 227);
             visibility: hidden;
@@ -28,17 +29,17 @@
             transition: opacity 0.3s;
         }
     
-        .tooltip:hover .tooltip-text {
+        .tooltip:hover::after {
             visibility: visible;
             opacity: 1;
         }
  
-        .tooltip.clicked .tooltip-text {
+        .tooltip.clicked::after {
             visibility: hidden;
             opacity: 0;
         }
 
-        .tooltip.disabled .tooltip-text {
+        .tooltip.disabled::after {
             visibility: hidden !important;
             opacity: 0 !important;
         }
@@ -50,7 +51,7 @@
         <div class="breadcrumb">
             <a href="https://terjemahin.website/">Home</a> /
             <a href="https://terjemahin.website/The Eternal Supreme">The Eternal Supreme</a> /
-            <a href="https://terjemahin.website/The Eternal Supreme/Chapter 2400">Chapter 2400: Return</a>
+            <a href="https://terjemahin.website/The Eternal Supreme/Chapter 2400">Chapter 2400: Return to the hell</a>
         </div>
     </header>
 
@@ -59,10 +60,10 @@
             <h1>The Eternal Supreme</h1>
 
             <div class="controls">
-                <button> A+ </button>
-                <button> A- </button>
-                <button> 🕯️ </button>
-                <button id="toggle-tooltip">Toggle Tooltip</button>
+                <button id="increaseFont" title="Increase font +1px"> A+ </button>
+                <button id="decreaseFont" title="Decrease font -1px"> A- </button>
+                <button id="theme-button" title="Mode Theme"> 🕯️ </button>
+                <button id="toggle-tooltip" title="Turn on/ off tooltip">❤️</button>
             </div>
 
             <div class="info">
@@ -72,33 +73,20 @@
             <hr/>
             <div class="text">
                 <p><strong>Chapter 2400: Return</strong></p>
-                <p class="tooltip">“Ah!”
-                    <span class="tooltip-text">"Bagiamana mungkin itu bisa!"</span>
-                </p>
-                <p class="tooltip">Lei BA tiba-tiba memegangi kepalanya, matanya merah saat dia meraung, “” Tidak mungkin! Mengapa petir surgawi hanya
-                    menyambar anak saya dan bukan Anda? Pasti keluarga SU yang berencana membunuh anakku!”
-                    <span class="tooltip-text">Lei BA suddenly clutched his head, his eyes red as he roared, “Impossible! Why did the heavenly
-                    lightning only strike my son and not you? It must be the SU family who plotted to kill my son!”</span>
-                </p>
-                <p class="tooltip">Lei BA tiba-tiba mengalihkan pandangannya ke arah Su Mo dan memelototinya.
-                    <span class="tooltip-text">Lei BA suddenly turned his gaze towards su mo and glared at him.</span>
-                </p>
-                <p class="tooltip">Su mo sudah bertanya tentang masalah ini, dan dia buru-buru menangkupkan tinjunya dan berkata, “” Master sekte Lei, kamu
+                <p class="tooltip" tl-text="Bagaimana itu?">“Ah!”</p>
+                <p class="tooltip" tl-text="Lei BA suddenly clutched his head, his eyes red as he roared, “Impossible! Why did the heavenly
+                    lightning only strike my son and not you? It must be the SU family who plotted to kill my son!”">Lei BA tiba-tiba memegangi kepalanya, matanya merah saat dia meraung, “” Tidak mungkin! Mengapa petir surgawi hanya
+                    menyambar anak saya dan bukan Anda? Pasti keluarga SU yang berencana membunuh anakku!”</p>
+                <p class="tooltip" tl-text="Lei BA suddenly turned his gaze towards su mo and glared at him.">Lei BA tiba-tiba mengalihkan pandangannya ke arah Su Mo dan memelototinya.</p>
+                <p class="tooltip" tl-text="Su mo had already asked about the matter, and he hurriedly cupped his fists and said, “Sect master
+                    Lei, you’ve misunderstood. It’s like this …”">Su mo sudah bertanya tentang masalah ini, dan dia buru-buru menangkupkan tinjunya dan berkata, “” Master sekte Lei, kamu
                     salah paham. Ini seperti ini …”
-                    <span class="tooltip-text">Su mo had already asked about the matter, and he hurriedly cupped his fists and said, “Sect master
-                    Lei, you’ve misunderstood. It’s like this …”</span>
                 </p>
-                <p class="tooltip">Dia segera menjelaskan alasannya dan menunjuk si bodoh kecil, ” “Itu semua karena si bodoh inilah anakmu tidak sengaja
-                    tersambar petir. Itu benar-benar tidak ada hubungannya dengan keluarga su-ku.”
-                    <span class="tooltip-text">He immediately explained the situation and pointed at little fool, “It’s all because of this fool
-                    that your son was accidentally struck by lightning. It really has nothing to do with my su family.”</span>
-                </p>
-                <p class="tooltip">"Bodoh?"
-                    <span class="tooltip-text">“A fool?”</span>
-                </p>
-                <p class="tooltip">Lei BA menatap tajam ke arah si bodoh kecil itu dan menunjuk ke arahnya, “” Kaulah yang membunuh anakku!”
-                    <span class="tooltip-text">Lei BA glared fiercely a little lost and pointed at him, “You’re the one who killed my son!”</span>
-                </p>
+                <p class="tooltip" tl-text="He immediately explained the situation and pointed at little fool, “It’s all because of this fool
+                    that your son was accidentally struck by lightning. It really has nothing to do with my su family.”">Dia segera menjelaskan alasannya dan menunjuk si bodoh kecil, ” “Itu semua karena si bodoh inilah anakmu tidak sengaja
+                    tersambar petir. Itu benar-benar tidak ada hubungannya dengan keluarga su-ku.”</p>
+                <p class="tooltip" tl-text="“A fool?”">"Bodoh?"</p>
+                <p class="tooltip" tl-text="Lei BA glared fiercely a little lost and pointed at him, “You’re the one who killed my son!”">Lei BA menatap tajam ke arah si bodoh kecil itu dan menunjuk ke arahnya, “” Kaulah yang membunuh anakku!”</p>
             </div>
             <hr/>※ Chapter 2400
             <div class=btn>
@@ -116,6 +104,43 @@
             <div id="disqus_thread"></div>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/terjemahin/assets@latest/src/main.js"></script>
             <script type="text/javascript">
+                // Mendapatkan tombol dan elemen dengan class 'content'
+                const increaseButton = document.getElementById('increaseFont');
+                const decreaseButton = document.getElementById('decreaseFont');
+                const content = document.querySelector('.text');
+
+                // Fungsi untuk meningkatkan ukuran font
+                increaseButton.addEventListener('click', function () {
+                    let currentFontSize = window.getComputedStyle(content).fontSize;
+                    currentFontSize = parseFloat(currentFontSize); // Mengambil nilai font-size yang sudah ada
+                    content.style.fontSize = (currentFontSize + 1) + 'px'; // Menambahkan 2px pada ukuran font
+                });
+
+                // Fungsi untuk mengurangi ukuran font
+                decreaseButton.addEventListener('click', function () {
+                    let currentFontSize = window.getComputedStyle(content).fontSize;
+                    currentFontSize = parseFloat(currentFontSize);
+                    content.style.fontSize = (currentFontSize - 1) + 'px'; // Mengurangi 2px dari ukuran font
+                });
+
+
+
+                const button = document.getElementById('theme-button');
+                const body = document.body;
+
+                button.addEventListener('click', () => {
+                    body.classList.toggle('light');
+                    if (body.classList.contains('light')) {
+                        button.textContent = ' 🛏️ ';
+                    } else {
+                        button.textContent = '🕯️';
+                    }
+                });
+
+
+
+
+
                 document.querySelectorAll('.tooltip').forEach(tooltip => {
                         tooltip.addEventListener('click', () => {
                             tooltip.classList.toggle('clicked'); // Menambahkan/menghapus kelas 'clicked'
@@ -127,24 +152,24 @@
                     });
 
                 const toggleButton = document.getElementById('toggle-tooltip');
-                    const tooltips = document.querySelectorAll('.tooltip');
+                const tooltips = document.querySelectorAll('.tooltip');
 
-                    let tooltipEnabled = true;
+                let tooltipEnabled = true;
 
-                    // Toggle tooltip untuk semua elemen
-                    toggleButton.addEventListener('click', () => {
-                        tooltipEnabled = !tooltipEnabled; // Ganti status
-                        tooltips.forEach(tooltip => {
-                            if (tooltipEnabled) {
-                                tooltip.classList.remove('disabled'); // Aktifkan tooltip
-                            } else {
-                                tooltip.classList.add('disabled'); // Nonaktifkan tooltip
-                            }
-                        });
-
-                        // Perbarui teks tombol
-                        toggleButton.textContent = tooltipEnabled ? 'Disable Tooltip' : 'Enable Tooltip';
+                // Toggle tooltip untuk semua elemen
+                toggleButton.addEventListener('click', () => {
+                    tooltipEnabled = !tooltipEnabled; // Ganti status
+                    tooltips.forEach(tooltip => {
+                        if (tooltipEnabled) {
+                            tooltip.classList.remove('disabled'); // Aktifkan tooltip
+                        } else {
+                            tooltip.classList.add('disabled'); // Nonaktifkan tooltip
+                        }
                     });
+
+                    // Perbarui teks tombol
+                    toggleButton.textContent = tooltipEnabled ? '❤️' : '💔';
+                });
 
             </script>
         </section>
