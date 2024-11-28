@@ -260,8 +260,10 @@ body.close-sidebar-mode {
             hideShortcutNote();
         }
     }
-
-    document.querySelector('.close-note').addEventListener('click', hideShortcutNote);
+    document.querySelector('.close-note').addEventListener('click', () => {
+        hideShortcutNote();
+        addCookies('shortcut', 'true'); 
+    });
 
     // function loader when refresh
     ['fontSizeLoader', 'themeLoader', 'tooltipLoader', 'shortcutLoader'].forEach(fn => document.addEventListener('DOMContentLoaded', window[fn]));
