@@ -32,6 +32,10 @@ body.light footer {
     color: #fff;
 }
 
+body.close-sidebar-mode {
+    cursor: pointer;
+}
+
 
 a {
     color: #222;
@@ -165,7 +169,10 @@ footer {
     opacity: 0;
 }
 
-
+.tooltip.disabled::after {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
 
 
 
