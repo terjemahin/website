@@ -70,12 +70,12 @@ body.close-sidebar-mode {
             </div>
 
 
-            <div class=btn>
-                <input type="checkbox" id=prev />
+            <div class="btn">
+                <input type="checkbox" id="prev" />
                 <label for="prev" href="javascript:void(0)" onclick='xOpen("2399")'>
                     <b><< Sebelumnya</b>
                 </label>
-                <input type="checkbox" id=next />
+                <input type="checkbox" id="next" />
                 <label for="next" href="javascript:void(0)" onclick='xOpen("2401")'>
                     <b>Selanjutnya >></b>
                 </label>
@@ -176,11 +176,15 @@ body.close-sidebar-mode {
 
 
 
-                document.querySelectorAll('.tooltip').forEach(tooltip => {
-                        tooltip.addEventListener('click', () => {
-                            tooltip.classList.toggle('clicked'); // Menambahkan/menghapus kelas 'clicked'
-                        });
+              document.querySelectorAll('.tooltip').forEach(tooltip => {
+                    tooltip.addEventListener('click', () => {
+                        tooltip.classList.toggle('clicked');
                     });
+
+                    tooltip.addEventListener('mouseleave', () => {
+                        tooltip.classList.remove('clicked');
+                    });
+                });
 
                 const toggleButton = document.getElementById('toggle-tooltip');
                 const tooltips = document.querySelectorAll('.tooltip');
