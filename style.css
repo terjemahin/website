@@ -154,14 +154,10 @@ footer {
     transition: opacity 0.3s;
 }
 
-.tooltip:hover::after {
+.tooltip:hover::after,
+.tooltip.clicked::after {
     visibility: visible;
     opacity: 1;
-}
-
-.tooltip.clicked::after {
-    visibility: hidden;
-    opacity: 0;
 }
 
 .tooltip.disabled::after {
