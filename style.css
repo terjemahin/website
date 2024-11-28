@@ -158,13 +158,20 @@ footer {
     transition: opacity 0.3s;
 }
 
-.tooltip:hover::after,
-.tooltip.clicked::after {
+/* Tooltip muncul saat hover */
+.tooltip:hover::after {
     visibility: visible;
     opacity: 1;
 }
 
-.tooltip:not(.clicked)::after {
+/* Tooltip disembunyikan saat diklik */
+.tooltip.clicked::after {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Hover dinonaktifkan jika elemen diklik */
+.tooltip.clicked:hover::after {
     visibility: hidden;
     opacity: 0;
 }
