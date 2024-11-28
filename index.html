@@ -250,8 +250,21 @@ body.close-sidebar-mode {
         }
     }
 
+    function hideShortcutNote() {
+        document.getElementById('shortcut-note').style.display = 'none';
+        document.querySelectorAll('hr')[3].style.display = 'none';
+    }
+
+    function shortcutLoader() {
+        if (getCookie('shortcut') === true) {
+            hideShortcutNote();
+        }
+    }
+
+    document.querySelector('.close-note').addEventListener('click', hideShortcutNote);
+
     // function loader when refresh
-    ['fontSizeLoader', 'themeLoader', 'tooltipLoader'].forEach(fn => document.addEventListener('DOMContentLoaded', window[fn]));
+    ['fontSizeLoader', 'themeLoader', 'tooltipLoader', 'shortcutLoader'].forEach(fn => document.addEventListener('DOMContentLoaded', window[fn]));
 
 
 
@@ -366,10 +379,6 @@ body.close-sidebar-mode {
 
 
 
-    document.querySelector('.close-note').addEventListener('click', function () {
-            document.getElementById('shortcut-note').style.display = 'none';
-            document.querySelectorAll('hr')[3].style.display = 'none'
-    });
             </script>
         </section>
     </main>
