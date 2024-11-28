@@ -180,10 +180,6 @@ body.close-sidebar-mode {
                         tooltip.addEventListener('click', () => {
                             tooltip.classList.toggle('clicked'); // Menambahkan/menghapus kelas 'clicked'
                         });
-
-                        tooltip.addEventListener('mouseleave', () => {
-                            tooltip.classList.remove('clicked'); // Menghapus kelas 'clicked' ketika mouse meninggalkan elemen
-                        });
                     });
 
                 const toggleButton = document.getElementById('toggle-tooltip');
