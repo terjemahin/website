@@ -7,7 +7,9 @@
     <title>Chapter 2400 - Chapter 2400: Chapter 2400-return</title>
     <link rel="stylesheet" href="style.css">
     <style>
-
+body.close-sidebar-mode {
+    cursor: pointer;
+}
     </style>
 </head>
 
@@ -60,10 +62,6 @@
                 <button id="closeSidebar" class="close-btn">×</button>
                 <h2>List Chapter</h2>
                 <select id="dropdown" class="dropdown">
-                    <option value="">Pilih Chapter</option>
-                    <option value="data1">Chapter 100</option>
-                    <option value="data2">Chapter 200</option>
-                    <option value="data3">Chapter 300</option>
                 </select>
                 <div id="jsonResult" class="json-result">
                     <h3>URL LINK</h3>
@@ -99,6 +97,28 @@
             <div id="disqus_thread"></div>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/terjemahin/assets@latest/src/main.js"></script>
             <script type="text/javascript">
+    function addCookies(name, value, days = 7) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        const expires = `expires=${date.toUTCString()}`;
+        const sameSite = "SameSite=Lax"; // Sesuaikan dengan kebutuhan
+        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; ${expires}; path=/; ${sameSite}`;
+    }
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(`${encodeURIComponent(name)}=`)) {
+                return decodeURIComponent(cookie.substring(name.length + 1));
+            }
+        }
+        return null;
+    }
+
+
+
+
+
                 // Mendapatkan tombol dan elemen dengan class 'content'
                 const increaseButton = document.getElementById('increaseFont');
                 const decreaseButton = document.getElementById('decreaseFont');
@@ -109,6 +129,7 @@
                     let currentFontSize = window.getComputedStyle(content).fontSize;
                     currentFontSize = parseFloat(currentFontSize); // Mengambil nilai font-size yang sudah ada
                     content.style.fontSize = (currentFontSize + 1) + 'px'; // Menambahkan 2px pada ukuran font
+                    addCookies("fontSize", currentFontSize+1 + 'px')
                 });
 
                 // Fungsi untuk mengurangi ukuran font
@@ -116,6 +137,7 @@
                     let currentFontSize = window.getComputedStyle(content).fontSize;
                     currentFontSize = parseFloat(currentFontSize);
                     content.style.fontSize = (currentFontSize - 1) + 'px'; // Mengurangi 2px dari ukuran font
+                    addCookies("fontSize", currentFontSize-1 + 'px')
                 });
 
 
@@ -144,6 +166,7 @@
 
                     const currentTheme = body.classList.contains('light') ? 'light' : 'dark';
                     button.textContent = body.classList.contains('light') ? '💤' : '🕯️';
+                    addCookies('theme', currentTheme)
 
                     reloadDisqusTheme(currentTheme);
                 });
@@ -165,12 +188,14 @@
 
                 const toggleButton = document.getElementById('toggle-tooltip');
                 const tooltips = document.querySelectorAll('.tooltip');
+                const tooltipCookie = getCookie('tooltip');
 
-                let tooltipEnabled = true;
+                let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
                 // Toggle tooltip untuk semua elemen
                 toggleButton.addEventListener('click', () => {
                     tooltipEnabled = !tooltipEnabled; // Ganti status
+                    addCookies("tooltip", tooltipEnabled)
                     tooltips.forEach(tooltip => {
                         if (tooltipEnabled) {
                             tooltip.classList.remove('disabled'); // Aktifkan tooltip
@@ -188,108 +213,157 @@
 
 
 
+    function fontSizeLoader() {
+        const fontSize = getCookie('fontSize');
+        if (fontSize) {
+            const element = document.querySelector('.text');
 
-
-                    // Mengambil elemen tombol dan sidebar
-                    const sidebarToggleBtn = document.getElementById('sidebarToggle');
-                    const sidebar = document.getElementById('sidebar');
-
-
-                    document.getElementById('closeSidebar').addEventListener('click', function () {
-                        document.getElementById('sidebar').classList.remove('open');
-                    });
-
-                    // Fungsi untuk toggle sidebar
-                    sidebarToggleBtn.addEventListener('click', function () {
-                        sidebar.classList.toggle('open');
-                    });
-    const jsonData = {
-        "Chapter 0001-0010": [
-            { bab: "※Chapter 0001※", url: "https://contoh.com/bab1" },
-            { bab: "※Chapter 0002※", url: "https://contoh.com/bab2" },
-            { bab: "※Chapter 0003※", url: "https://contoh.com/bab3" },
-            { bab: "※Chapter 0004※", url: "https://contoh.com/bab4" },
-            { bab: "※Chapter 0005※", url: "https://contoh.com/bab5" },
-            { bab: "※Chapter 0006※", url: "https://contoh.com/bab6" },
-            { bab: "※Chapter 0007※", url: "https://contoh.com/bab7" },
-            { bab: "※Chapter 0008※", url: "https://contoh.com/bab8" },
-            { bab: "※Chapter 0009※", url: "https://contoh.com/bab9" },
-            { bab: "※Chapter 0010※", url: "https://contoh.com/bab10"},
-            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
-            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
-            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
-            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
-            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
-            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
-            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
-            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
-            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
-            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" }
-        ],
-        "Chapter 0011-0020": [
-            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
-            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
-            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
-            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
-            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
-            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
-            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
-            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
-            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
-            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" },
-            { bab: "※Chapter 0011※", url: "https://contoh.com/bab11" },
-            { bab: "※Chapter 0012※", url: "https://contoh.com/bab12" },
-            { bab: "※Chapter 0013※", url: "https://contoh.com/bab13" },
-            { bab: "※Chapter 0014※", url: "https://contoh.com/bab14" },
-            { bab: "※Chapter 0015※", url: "https://contoh.com/bab15" },
-            { bab: "※Chapter 0016※", url: "https://contoh.com/bab16" },
-            { bab: "※Chapter 0017※", url: "https://contoh.com/bab17" },
-            { bab: "※Chapter 0018※", url: "https://contoh.com/bab18" },
-            { bab: "※Chapter 0019※", url: "https://contoh.com/bab19" },
-            { bab: "※Chapter 0020※", url: "https://contoh.com/bab20" }
-        ]
-    };
-    const dropdown = document.getElementById('dropdown');
-    const jsonContent = document.getElementById('jsonContent');
-
-    // Mengisi dropdown dengan kelompok bab
-    function populateDropdown(data) {
-        dropdown.innerHTML = '<option value="">Pilih Chapter</option>';
-        for (const group in data) {
-            const option = document.createElement('option');
-            option.value = group;
-            option.textContent = group;
-            dropdown.appendChild(option);
+            if (element) {
+                element.style.transition = 'none';
+                element.style.fontSize = fontSize;
+                setTimeout(function () {
+                    element.style.transition = 'font-size 0.4s ease';
+                }, 50);
+            }
         }
     }
 
-    // Menampilkan daftar link Chapter 00saat dropdown dipilih
-    dropdown.addEventListener('change', function () {
-        const selectedGroup = this.value;
-        jsonContent.innerHTML = ""; // Reset konten
-
-        if (selectedGroup && jsonData[selectedGroup]) {
-            // Pastikan elemen '.json-result' diubah display-nya
-            document.querySelector('.json-result').style.display = "block";
-
-            const selectedData = jsonData[selectedGroup];
-            selectedData.forEach(item => {
-                const link = document.createElement('a');
-                link.href = item.url;
-                link.textContent = item.bab;
-                link.target = "_blank"; // Buka di tab baru
-                link.style.display = "block"; // Agar setiap link berada di baris baru
-                jsonContent.appendChild(link);
-            });
-        } else {
-            // Sembunyikan elemen '.json-result' jika tidak ada pilihan valid
-            document.querySelector('.json-result').style.display = "none";
+    function themeLoader() {
+        const theme = getCookie('theme');
+        if (theme == "light") {
+            body.classList.add('light');;
+            button.textContent = body.classList.contains('light') ? '💤' : '🕯️';
+            reloadDisqusTheme(body.classList.contains('light') ? 'light' : 'dark');
         }
-    });
+    }
+
+    function tooltipLoader() {
+        if (tooltipCookie !== null) {
+            tooltips.forEach(tooltip => {
+                if (tooltipEnabled) {
+                    tooltip.classList.remove('disabled'); 
+                } else {
+                    tooltip.classList.add('disabled');
+                }
+            });
+            toggleButton.textContent = tooltipEnabled ? '❤️' : '💔';
+        }
+    }
+
+    // function loader when refresh
+    ['fontSizeLoader', 'themeLoader', 'tooltipLoader'].forEach(fn => document.addEventListener('DOMContentLoaded', window[fn]));
 
 
-    // Panggil fungsi untuk mengisi dropdown
-    populateDropdown(jsonData);
+
+
+
+
+
+
+
+
+
+
+                   // Mengambil elemen tombol dan sidebar
+                    const sidebarToggleBtn = document.getElementById('sidebarToggle');
+                    const sidebar = document.getElementById('sidebar');
+                    const closeSidebarBtn = document.getElementById('closeSidebar');
+
+                    // Tombol untuk membuka atau menutup sidebar (toggle)
+                    sidebarToggleBtn.addEventListener('click', function () {
+                        sidebar.classList.toggle('open');
+
+                        // Jika sidebar terbuka, jadikan body sebagai penutup
+                        if (sidebar.classList.contains('open')) {
+                            document.body.classList.add('close-sidebar-mode');
+                        } else {
+                            document.body.classList.remove('close-sidebar-mode');
+                        }
+                    });
+
+                    // Tombol eksplisit untuk menutup sidebar
+                    closeSidebarBtn.addEventListener('click', function () {
+                        closeSidebar();
+                    });
+
+                    // Klik di body untuk menutup sidebar (jika sidebar sedang terbuka)
+                    document.body.addEventListener('click', function (event) {
+                        if (document.body.classList.contains('close-sidebar-mode')) {
+                            // Tutup sidebar jika klik di luar sidebar
+                            if (!sidebar.contains(event.target) && event.target !== sidebarToggleBtn) {
+                                closeSidebar();
+                            }
+                        }
+                    });
+
+                    // Fungsi untuk menutup sidebar
+                    function closeSidebar() {
+                        sidebar.classList.remove('open');
+                        document.body.classList.remove('close-sidebar-mode');
+                    }
+
+
+                    
+
+                    
+
+                    const dropdown = document.getElementById('dropdown');
+                        const jsonContent = document.getElementById('jsonContent');
+
+                        // URL file JSON
+                        const jsonUrl = 'https://raw.githubusercontent.com/terjemahin/website/refs/heads/main/data.json';
+
+                        // Fungsi untuk memuat JSON
+                        async function loadJsonData() {
+                            try {
+                                const response = await fetch(jsonUrl);
+                                if (!response.ok) throw new Error('Gagal memuat data');
+                                const data = await response.json();
+                                populateDropdown(data);
+                                setupDropdownListener(data);
+                            } catch (error) {
+                                console.error('Error:', error);
+                            }
+                        }
+
+                        // Mengisi dropdown dengan kelompok bab
+                        function populateDropdown(data) {
+                            dropdown.innerHTML = '<option value="">Pilih Chapter</option>';
+                            for (const group in data) {
+                                const option = document.createElement('option');
+                                option.value = group;
+                                option.textContent = group;
+                                dropdown.appendChild(option);
+                            }
+                        }
+
+                        // Mengatur event listener untuk dropdown
+                        function setupDropdownListener(data) {
+                            dropdown.addEventListener('change', function () {
+                                const selectedGroup = this.value;
+                                jsonContent.innerHTML = ""; // Reset konten
+
+                                if (selectedGroup && data[selectedGroup]) {
+                                    document.querySelector('.json-result').style.display = "block";
+
+                                    const selectedData = data[selectedGroup];
+                                    selectedData.forEach(item => {
+                                        const link = document.createElement('a');
+                                        link.href = item.url;
+                                        link.textContent = item.bab;
+                                        // link.target = "_blank"; 
+                                        link.style.display = "block"; 
+                                        jsonContent.appendChild(link);
+                                    });
+                                } else {
+                                    document.querySelector('.json-result').style.display = "none";
+                                }
+                            });
+                        }
+
+                        // Memuat data JSON saat halaman dimuat
+                        loadJsonData();
+
 
 
     document.querySelector('.close-note').addEventListener('click', function () {
