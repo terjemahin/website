@@ -33,7 +33,7 @@ body.light footer {
 }
 
 body.close-sidebar-mode {
-    cursor: pointer;
+    cursor: default;
 }
 
 
@@ -138,7 +138,7 @@ footer {
 
 .tooltip {
     position: relative;
-    cursor: pointer;
+    cursor: default;
 }
 
 .tooltip::after {
