@@ -1,1 +1,32 @@
-not empty
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repo Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Repo Files</h1>
+    <ul id="file-list"></ul>
+    <script>
+        const repoOwner = 'terjemahin'; // Ganti dengan nama pemilik repo
+        const repoName = 'website'; // Ganti dengan nama repo
+        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents`)
+            .then(response => response.json())
+            .then(data => {
+                const fileList = document.getElementById('file-list');
+                data.forEach(file => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${file.html_url}" target="_blank">${file.name}</a>`;
+                    fileList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
