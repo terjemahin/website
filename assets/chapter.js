@@ -175,7 +175,7 @@ const openPage = (chapterUrl) => {
 
 const openChapter = (chapterNumber) => {
     const paddedChapter = String(chapterNumber).padStart(4, "0");
-    const chapterUrl = location.protocol + basePath + "chapter-" + paddedChapter + ".html";
+    const chapterUrl = location.protocol + basePath + "chapter-" + paddedChapter;
     open(chapterUrl, "_self");
 };
 
@@ -217,7 +217,7 @@ function closeSidebar() {
 // JSON-content url link
 const dropdown = document.getElementById('dropdown');
 const jsonContent = document.getElementById('jsonContent');
-const jsonUrl = 'https://raw.githubusercontent.com/terjemahin/website/refs/heads/main/data.json';
+const jsonUrl = 'https://raw.githubusercontent.com/terjemahin/website/refs/heads/main/assets/data.json';
 
 async function loadJsonData() {
     try {
