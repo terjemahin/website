@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Folder Viewer</title>
+    <title>Folder File Viewer</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { font-family: Arial, sans-serif; }
         ul { list-style-type: none; padding: 0; }
         li { margin: 5px 0; }
     </style>
 </head>
 <body>
-    <h1>Files in Folder "test"</h1>
+    <h1>Files in Folder: Test</h1>
     <ul id="file-list"></ul>
     <script>
-        const repoOwner = 'terjemahin'; // Ganti dengan nama pemilik repo
-        const repoName = 'website'; // Ganti dengan nama repo
-        const folderPath = 'the-eternal-supreme'; // Path ke folder yang ingin diakses
-        
+        const repoOwner = 'username'; // Ganti dengan nama pemilik repo
+        const repoName = 'repository-name'; // Ganti dengan nama repo
+        const folderPath = 'test'; // Ganti dengan nama folder
+
         fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`GitHub API error: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 const fileList = document.getElementById('file-list');
-                data.forEach(file => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<a href="${file.html_url}" target="_blank">${file.name}</a>`;
-                    fileList.appendChild(li);
-                });
+                if (Array.isArray(data)) {
+                    data.filter(file => file.name !== 'index.html') // Menyaring file selain 'index.html'
+                        .forEach(file => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<a href="${file.html_url}" target="_blank">${file.name}</a>`;
+                            fileList.appendChild(li);
+                        });
+                } else {
+                    fileList.innerHTML = '<li>No files found or folder does not exist.</li>';
+                }
             })
             .catch(error => {
-                document.body.innerHTML = `<p>Error: ${error.message}</p>`;
+                console.error('Error:', error);
+                document.getElementById('file-list').innerHTML = '<li>Failed to load files.</li>';
             });
     </script>
 </body>
