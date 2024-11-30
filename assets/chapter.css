@@ -138,12 +138,13 @@ footer {
 
 .scripts {
     position: relative;
+    cursor: default;
 }
+
 .scripts::after {
     content: attr(raw);
     background-color: rgb(38, 42, 43);
     color: rgb(232, 230, 227);
-    visibility: var(--tooltip, hidden);
     border-radius: 5px;
     padding: 18px;
     position: absolute;
@@ -152,15 +153,23 @@ footer {
     white-space: normal;
     width: auto;
     z-index: 1;
-    opacity: var(--animate, 0);
     transition: opacity 0.45s;
 }
+
+.scripts.tooltip::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.scripts:not(.tooltip)::after {
+    visibility: hidden;
+    opacity: 0;
+}
+
 .scripts.disabled::after {
     visibility: hidden !important;
     opacity: 0 !important;
 }
-
-
 
 
 
