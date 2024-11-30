@@ -1,42 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folder File Viewer</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 5px 0; }
-    </style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Baca Novel Bahasa Indonesia di Terjemahin.website</title>
+	<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/main.css">
 </head>
 <body>
-    <h1>Files in Folder: Test</h1>
-    <ul id="file-list"></ul>
-    <script>
-        const repoOwner = 'terjemahin'; // Ganti dengan nama pemilik repo
-        const repoName = 'website'; // Ganti dengan nama repo
-        const folderPath = 'the-eternal-supreme'; // Ganti dengan nama folder
 
-        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`)
-            .then(response => response.json())
-            .then(data => {
-                const fileList = document.getElementById('file-list');
-                if (Array.isArray(data)) {
-                    data.filter(file => file.name !== 'index.html') // Menyaring file selain 'index.html'
-                        .forEach(file => {
-                            const li = document.createElement('li');
-                            li.innerHTML = `<a href="${file.html_url}" target="_blank">${file.name}</a>`;
-                            fileList.appendChild(li);
-                        });
-                } else {
-                    fileList.innerHTML = '<li>No files found or folder does not exist.</li>';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('file-list').innerHTML = '<li>Failed to load files.</li>';
-            });
-    </script>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white border-bottom" id="navbar">
+	<div class="container big-nav">
+		<a class="navbar-brand" href=".html">
+		<img src="images/images-logo.png" width="200" height="50" class="d-inline-block align-top mr-2" alt="">
+		</a>
+		
+		<div class="collapse navbar-collapse" style="justify-content: flex-end;" id="navbarSupportedContent">
+			<form class="form-inline my-2 my-lg-0 d-none d-lg-flex" action="./" method="GET">
+				<input type="hidden" name="c" value="search">
+				<input name="s" class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search" value="">
+				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">	<i class="fa fa-search" aria-hidden="true"></i> let's go!</button>
+			</form>				
+		</div>
+	</div>
+</nav>
+	<div class="container" id="main">
+		<div class="row mt-3">
+			<div class="col-12">
+<form class="form d-block d-lg-none" action="./" method="GET">
+	<input type="hidden" name="c" value="search">
+	<div class="input-group mb-3">
+	<input name="s" class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search" value="">
+	<div class="input-group-append">
+		<button class="btn btn-outline-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> let's go!</button>
+	</div>
+	</div>
+</form>
+<input type="hidden" id="dir" value="Demo">
+				<p>Breadcrumb Trail: <a href="https://terjemahin.website/">Master</a>/ <a href="https://terjemahin.website/the-eternal-supreme">The Eternal Supreme</a></p>
+			</div>
+		</div>
+		<div class="row mt-2"><div class="col-12">
+						<table class="table table-hover dirlist" id="list">
+				<thead>
+					<tr>
+										<th>Title Novel</th>
+					<th class="d-none d-lg-table-cell"></th>
+					<th class="d-none d-lg-table-cell">Last updated</th>
+					<th>Total Chapter</th>
+					<th class="d-none d-md-table-cell">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="d-none d-md-table-cell">
+							<a class="fname" href="/the-eternal-supreme" title="The Eternal Supreme"><i
+									class="fa fa-folder-open fa-fw"></i>The Eternal Supreme</a>
+						</td>
+						<td class="d-table-cell d-md-none">
+							<a class="fname" href="/the-eternal-supreme"><i class="fa fa-folder-open fa-fw"></i>The Eternal Supreme</a>
+						</td>
+						<td class="d-none d-lg-table-cell fileinfo"></td>
+						<td class="d-none d-lg-table-cell">2024-09-01 13:41</td>
+						<td>2406</td>
+						<td class="d-none d-md-table-cell">Completed</td>
+					</tr>
+					<tr>
+						<td class="d-none d-md-table-cell">
+							<a class="fname" href="/the-ultimate-of-all-ages" title="The Ultimate of All Ages"><i class="fa fa-folder-open fa-fw"></i>The Ultimate of All Ages</a>
+						</td>
+						<td class="d-table-cell d-md-none">
+							<a class="fname" href="/the-ultimate-of-all-ages"><i
+								class="fa fa-folder-open fa-fw"></i>The Ultimate of All Ages</a>
+						</td>
+						<td class="d-none d-lg-table-cell fileinfo"></td>
+						<td class="d-none d-lg-table-cell">2024-11-15 03:59</td>
+						<td>1359</td>
+						<td class="d-none d-md-table-cell">Ongoing</td>
+					</tr>				
+				</tbody>
+			</table>
+		</div></div>
+	</div>
 </body>
 </html>
