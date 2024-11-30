@@ -73,18 +73,22 @@ button.addEventListener('click', () => {
 
 //  Tooltip
 const toggleButton = document.getElementById('toggle-tooltip');
-const tooltips = document.querySelectorAll('.tooltip');
+const tooltips = document.querySelectorAll('.scripts');
 const tooltipCookie = getCookie('tooltip');
 
 let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
-document.querySelectorAll('.tooltip').forEach(tooltip => {
-    tooltip.addEventListener('click', () => {
-        tooltip.classList.toggle('clicked');
-    });
+tooltips.forEach(tooltip => {
+    const toggleVisibility = (visibility, opacity) => {
+        tooltip.style.setProperty('--tooltip', visibility);
+        tooltip.style.setProperty('--animate', opacity);
+    };
 
-    tooltip.addEventListener('mouseleave', () => {
-        tooltip.classList.remove('clicked');
+    tooltip.addEventListener('mouseenter', () => toggleVisibility('visible', '1'));
+    tooltip.addEventListener('mouseleave', () => toggleVisibility('hidden', '0'));
+    tooltip.addEventListener('click', () => {
+        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip');
+        toggleVisibility(currentVisibility === 'visible' ? 'hidden' : 'visible', currentVisibility === 'visible' ? '0' : '1');
     });
 });
 
