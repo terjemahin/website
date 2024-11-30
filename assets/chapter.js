@@ -79,16 +79,7 @@ const tooltipCookie = getCookie('tooltip');
 let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
 document.querySelectorAll('.scripts').forEach(tooltip => {
-    tooltip.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-
-        document.querySelectorAll('.scripts').forEach(t => {
-            if (t !== tooltip) {
-                t.classList.remove('tooltip');
-                tooltip.classList.toggle('tooltip');
-            }
-        });
-
+    tooltip.addEventListener('click', () => {
         tooltip.classList.toggle('tooltip');
     });
 
