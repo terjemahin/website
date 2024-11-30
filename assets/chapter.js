@@ -75,15 +75,13 @@ button.addEventListener('click', () => {
 const toggleButton = document.getElementById('toggle-tooltip');
 const tooltips = document.querySelectorAll('.scripts');
 const tooltipCookie = getCookie('tooltip');
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
 document.querySelectorAll('.scripts').forEach(tooltip => {
-    tooltip.addEventListener('click', () => {
-        tooltip.classList.toggle('tooltip');
-    });
 
-    tooltip.addEventListener('mouseover', () => {
+    tooltip.addEventListener('click', () => {
         tooltip.classList.toggle('tooltip');
     });
 
@@ -91,6 +89,15 @@ document.querySelectorAll('.scripts').forEach(tooltip => {
         tooltip.classList.remove('tooltip');
     });
 });
+
+if (!isTouchDevice) {
+    document.querySelectorAll('.scripts').forEach(tooltip => {
+        
+        tooltip.addEventListener('mouseover', () => {
+            tooltip.classList.toggle('tooltip');
+        });
+    });
+}
 
 toggleButton.addEventListener('click', () => {
     tooltipEnabled = !tooltipEnabled; 
