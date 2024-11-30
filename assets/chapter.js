@@ -80,17 +80,22 @@ let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
 tooltips.forEach(tooltip => {
     const toggleVisibility = (visibility, opacity) => {
-        tooltip.style.setProperty('--tooltip', visibility);
-        tooltip.style.setProperty('--animate', opacity);
+        tooltip.style.setProperty('--tooltip-visibility', visibility);
+        tooltip.style.setProperty('--tooltip-opacity', opacity);
     };
 
-    tooltip.addEventListener('mouseenter', () => toggleVisibility('visible', '1'));
-    tooltip.addEventListener('mouseleave', () => toggleVisibility('hidden', '0'));
+    tooltip.addEventListener('mouseenter', () => toggleVisibility('visible', '1'));  // Desktop
+    tooltip.addEventListener('mouseleave', () => toggleVisibility('hidden', '0'));  // Desktop
+
+    tooltip.addEventListener('touchstart', () => toggleVisibility('visible', '1')); // Mobile (touch)
+    tooltip.addEventListener('touchend', () => toggleVisibility('hidden', '0')); // Mobile (touch)
+
     tooltip.addEventListener('click', () => {
-        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip');
+        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip-visibility');
         toggleVisibility(currentVisibility === 'visible' ? 'hidden' : 'visible', currentVisibility === 'visible' ? '0' : '1');
     });
 });
+
 
 toggleButton.addEventListener('click', () => {
     tooltipEnabled = !tooltipEnabled; 
