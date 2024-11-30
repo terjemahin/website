@@ -83,10 +83,7 @@ tooltips.forEach(tooltip => {
         tooltip.style.setProperty('--tooltip', visibility);
         tooltip.style.setProperty('--animate', opacity);
     };
-
-    tooltip.addEventListener('mouseenter', () => toggleVisibility('visible', '1'));  // Desktop
-    tooltip.addEventListener('mouseleave', () => toggleVisibility('hidden', '0'));  // Desktop
-
+    
     tooltip.addEventListener('touchstart', () => toggleVisibility('visible', '1')); // Mobile (touch)
     tooltip.addEventListener('touchend', () => toggleVisibility('hidden', '0')); // Mobile (touch)
 
