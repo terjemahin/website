@@ -78,21 +78,27 @@ const tooltipCookie = getCookie('tooltip');
 
 let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
-tooltips.forEach(tooltip => {
-    const toggleVisibility = (visibility, opacity) => {
-        tooltip.style.setProperty('--tooltip', visibility);
-        tooltip.style.setProperty('--animate', opacity);
-    };
-    
-    tooltip.addEventListener('touchstart', () => toggleVisibility('visible', '1')); // Mobile (touch)
-    tooltip.addEventListener('touchend', () => toggleVisibility('hidden', '0')); // Mobile (touch)
+document.querySelectorAll('.scripts').forEach(tooltip => {
+    tooltip.addEventListener('click', (e) => {
+        e.stopPropagation(); 
 
-    tooltip.addEventListener('click', () => {
-        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip');
-        toggleVisibility(currentVisibility === 'visible' ? 'hidden' : 'visible', currentVisibility === 'visible' ? '0' : '1');
+        document.querySelectorAll('.scripts').forEach(t => {
+            if (t !== tooltip) {
+                t.classList.remove('tooltip');
+            }
+        });
+
+        tooltip.classList.toggle('tooltip');
+    });
+
+    tooltip.addEventListener('mouseover', () => {
+        tooltip.classList.toggle('tooltip');
+    });
+
+    tooltip.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('tooltip');
     });
 });
-
 
 toggleButton.addEventListener('click', () => {
     tooltipEnabled = !tooltipEnabled; 
