@@ -136,16 +136,14 @@ footer {
 
 
 
-.tooltip {
+.scripts {
     position: relative;
-    cursor: default;
 }
-
-.tooltip::after {
-    content: attr(tl-text);
+.scripts::after {
+    content: attr(raw);
     background-color: rgb(38, 42, 43);
     color: rgb(232, 230, 227);
-    visibility: hidden;
+    visibility: var(--tooltip, hidden);
     border-radius: 5px;
     padding: 18px;
     position: absolute;
@@ -154,32 +152,15 @@ footer {
     white-space: normal;
     width: auto;
     z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s;
+    opacity: var(--animate, 0);
+    transition: opacity 0.45s;
 }
-
-/* Tooltip muncul saat hover */
-.tooltip:hover::after {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Tooltip disembunyikan saat diklik */
-.tooltip.clicked::after {
-    visibility: hidden;
-    opacity: 0;
-}
-
-/* Hover dinonaktifkan jika elemen diklik */
-.tooltip.clicked:hover::after {
-    visibility: hidden;
-    opacity: 0;
-}
-
-.tooltip.disabled::after {
+.scripts.disabled::after {
     visibility: hidden !important;
     opacity: 0 !important;
 }
+
+
 
 
 
