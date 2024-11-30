@@ -80,8 +80,8 @@ let tooltipEnabled = tooltipCookie === null ? true : tooltipCookie === 'true';
 
 tooltips.forEach(tooltip => {
     const toggleVisibility = (visibility, opacity) => {
-        tooltip.style.setProperty('--tooltip-visibility', visibility);
-        tooltip.style.setProperty('--tooltip-opacity', opacity);
+        tooltip.style.setProperty('--tooltip', visibility);
+        tooltip.style.setProperty('--animate', opacity);
     };
 
     tooltip.addEventListener('mouseenter', () => toggleVisibility('visible', '1'));  // Desktop
@@ -91,7 +91,7 @@ tooltips.forEach(tooltip => {
     tooltip.addEventListener('touchend', () => toggleVisibility('hidden', '0')); // Mobile (touch)
 
     tooltip.addEventListener('click', () => {
-        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip-visibility');
+        const currentVisibility = getComputedStyle(tooltip).getPropertyValue('--tooltip');
         toggleVisibility(currentVisibility === 'visible' ? 'hidden' : 'visible', currentVisibility === 'visible' ? '0' : '1');
     });
 });
