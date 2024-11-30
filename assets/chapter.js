@@ -85,6 +85,7 @@ document.querySelectorAll('.scripts').forEach(tooltip => {
         document.querySelectorAll('.scripts').forEach(t => {
             if (t !== tooltip) {
                 t.classList.remove('tooltip');
+                tooltip.classList.toggle('tooltip');
             }
         });
 
