@@ -34,7 +34,7 @@ function renderTable(dataToRender) {
 			<a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" title="Copy Link"
 				onclick="navigator.clipboard.writeText('${entry.url}')">
 				<i class="fa fa-link fa-fw"></i></a>
-			<a href="${entry.url}" class="btn btn-sm btn-outline-primary" title="Download chapter" onclick="downloadFile(this.href)">
+			<a href="${entry.url}" class="btn btn-sm btn-outline-primary" title="Download chapter" onclick="downloadFile(this.href)" download>
 				<i class="fa fa-download fa-fw"></i></a>
 		</td>
 	</tr>`;
