@@ -49,8 +49,7 @@ function downloadFile(url) {
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(objectURL);
-        })
-        .catch(() => alert('Failed to download file.'));
+        }).catch(() => alert('Failed to download file.'));
 }
 
 
@@ -80,7 +79,8 @@ function rowText(url, chapter, date, size, reason) {
     }
 }
 
-function renderTable(dataToRender, toText, backButton=null) {
+function renderTable(dataToRender, toText, backButton = null) {
+    const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = "";
     if (backButton) {
         const defaultRow = `<tr>
@@ -99,3 +99,41 @@ function renderTable(dataToRender, toText, backButton=null) {
         tableBody.insertAdjacentHTML('beforeend', row);
     });
 } 
+
+function searchAndRender(inputElement, reason, backButton) {
+    const searchTerm = inputElement.value.toLowerCase();
+    const filteredData = Object.keys(data)
+        .filter(chapter => chapter.toLowerCase().includes(searchTerm))
+        .map(chapter => ({
+            chapter: chapter,
+            url: data[chapter].url,
+            date: data[chapter].date,
+            size: data[chapter].size
+        }));
+
+    renderTable(filteredData, reason, backButton);
+}
+
+function renderAllData(reason, backButton) {
+    const allData = Object.keys(data).map(chapter => ({
+        chapter: chapter,
+        url: data[chapter].url,
+        date: data[chapter].date,
+        size: data[chapter].size
+    }));
+
+    renderTable(allData, reason, backButton);
+
+    const searchInputs = [
+        { input: document.getElementById('searchInput-lg'), button: document.getElementById('searchButton-lg') },
+        { input: document.getElementById('searchInput-sm'), button: document.getElementById('searchButton-sm') }
+    ];
+
+    searchInputs.forEach(({ input, button }) => {
+        const searchHandler = () => searchAndRender(input, 'dir', '..');
+        button.addEventListener('click', searchHandler);
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') searchHandler();
+        });
+    });
+}
