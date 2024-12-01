@@ -1,0 +1,12 @@
+const data = {
+    "Chapter 2399-2400": {
+        "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-2399-2400",
+        "date": "2024-01-01",
+        "size": " 93.59 KB"
+    },
+    "Chapter 0101-0200": {
+        "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-0101-0200",
+        "date": "2024-01-01",
+        "size": " 84.85 KB"
+    }
+};
