@@ -20,7 +20,7 @@ function searchAndRender(inputElement) {
         }
     });
 
-    renderTable(filteredData, 'chapter', '..');
+    renderTable(filteredData, 'chapter', 'https://terjemahin.github.io/website/the-eternal-surpeme');
 }
 
 searchButtonLarge.addEventListener('click', () => searchAndRender(searchInputLarge));
@@ -48,7 +48,7 @@ function renderAllData() {
             size: item.size
         });
     });
-    renderTable(allData, 'chapter', '..');
+    renderTable(allData, 'chapter', 'https://terjemahin.github.io/website/the-eternal-surpeme');
 }
 
 renderAllData();
