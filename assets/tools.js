@@ -1,16 +1,18 @@
 function downloadFile(url) {
     event.preventDefault();
     const parts = url.split("/");
-    const rawUrl = "https://raw.githubusercontent.com/terjemahin/website/refs/heads/main" + parts.slice(3).join("/").replace("website", "") + ".html";
+    const rawUrl = "https://raw.githubusercontent.com/terjemahin/website/refs/heads/main" 
+                   + parts.slice(3).join("/").replace("website", "") + ".html";
 
     fetch(rawUrl)
-        .then(response => response.blob())
-        .then(blob => {
+        .then(response => response.text()) 
+        .then(content => {
+            const blob = new Blob([content], { type: 'text/html' }); 
             const objectURL = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = objectURL;
-            a.download = parts.pop() + '.html';
+            a.download = parts.pop()+ '.html'; 
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(objectURL);
