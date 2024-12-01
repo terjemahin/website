@@ -79,6 +79,7 @@ function rowText(url, chapter, date, size, reason) {
     }
 }
 
+
 function renderTable(dataToRender, toText, backButton = null) {
     const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = "";
@@ -100,6 +101,7 @@ function renderTable(dataToRender, toText, backButton = null) {
     });
 } 
 
+
 function searchAndRender(inputElement, reason, backButton) {
     const searchTerm = inputElement.value.toLowerCase();
     const filteredData = Object.keys(data)
@@ -113,6 +115,7 @@ function searchAndRender(inputElement, reason, backButton) {
 
     renderTable(filteredData, reason, backButton);
 }
+
 
 function renderAllData(reason, backButton) {
     const allData = Object.keys(data).map(chapter => ({
@@ -130,7 +133,7 @@ function renderAllData(reason, backButton) {
     ];
 
     searchInputs.forEach(({ input, button }) => {
-        const searchHandler = () => searchAndRender(input, 'dir', '..');
+        const searchHandler = () => searchAndRender(input, reason, backButton);
         button.addEventListener('click', searchHandler);
         input.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') searchHandler();
