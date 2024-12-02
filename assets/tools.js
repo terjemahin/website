@@ -1,23 +1,21 @@
-let data = {}; // Variabel global untuk menyimpan data
+let data = {}; 
 
 function mergeData(sources) {
     return new Promise((resolve, reject) => {
         let loadedScripts = 0;
 
-        sources.forEach((src, index) => {
+        sources.forEach((src) => {
             const script = document.createElement("script");
             script.src = src;
             script.async = false;
 
-            // Ketika script selesai dimuat
             script.onload = () => {
                 loadedScripts++;
                 if (loadedScripts === sources.length) {
-                    resolve(data); // Kembalikan data setelah semua file selesai dimuat
+                    resolve(data); 
                 }
             };
 
-            // Tangani error jika file gagal dimuat
             script.onerror = () => {
                 reject(new Error(`Failed to load script: ${src}`));
             };
@@ -83,77 +81,73 @@ function downloadFile(url) {
 }
 
 
-function rowText(url, chapter, date, size, reason) {
-    if (["chapter", "dir"].includes(reason)) {
-        const icon = reason === "chapter" ? "fa-file-code-o" : "fa-folder-open";
-        const action = `<a href="${url}" class="btn btn-sm btn-outline-primary" title="Download chapter" onclick="${reason === "chapter" ? "downloadFile" : "downloadZip"}(this.href); return false;"> <i class="fa fa-download fa-fw"></i></a>`;
+function rowText(url, title, date, size = null, total = null, status = null, reason = null) {
+    const isChapterOrDir = ["chapter", "dir"].includes(reason);
+    const icon = isChapterOrDir ? (reason === "chapter" ? "fa-file-code-o" : "fa-folder-open") : "fa-folder-open";
+    const action = isChapterOrDir
+        ? `<a href="${url}" class="btn btn-sm btn-outline-primary" onclick="${reason === "chapter" ? "downloadFile" : "downloadZip"}(this.href); return false;">
+                <i class="fa fa-download fa-fw"></i>
+           </a>`
+        : "";
 
-        return `<tr>
+    const copyLink = isChapterOrDir
+        ? `<a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" title="Copy Link"
+                onclick="navigator.clipboard.writeText('${url}')">
+                <i class="fa fa-link fa-fw"></i>
+           </a>`
+        : "";
+
+    return `<tr>
         <td class="d-none d-md-table-cell">
-            <a class="fname" href="${url}" title="${chapter}">
-                <i class="fa ${icon} fa-fw"></i> ${chapter}</a>
+            <a class="fname" href="${url}" title="${title}">
+                <i class="fa ${icon} fa-fw"></i> ${title}</a>
         </td>
         <td class="d-table-cell d-md-none">
             <a class="fname" href="${url}">
-                <i class="fa ${icon} fa-fw"></i> ${chapter}</a>
+                <i class="fa ${icon} fa-fw"></i> ${title}</a>
         </td>
         <td class="d-none d-md-table-cell">${date}</td>
-        <td class="d-none d-sm-table-cell">${size}</td>
-        <td>
-            <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" title="Copy Link"
-                onclick="navigator.clipboard.writeText('${url}')">
-                <i class="fa fa-link fa-fw"></i></a>
-            ${action}
-        </td>
+        <td class="d-none d-sm-table-cell">${isChapterOrDir ? size : total}</td>
+        <td>${copyLink} ${action} ${!isChapterOrDir ? status || "" : ""}</td>
     </tr>`;
-    }
 }
 
 
-function renderTable(dataToRender, toText, backButton = null) {
+function renderTable(data, reason, backButton = null) {
     const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = "";
-    if (backButton) {
-        const defaultRow = `<tr>
-		<td>
-			 <a class="fname" href="${backButton}">
-				<i class="fa fa-level-up fa-fw"></i> ..</a>
-		</td>
-		<td class="d-none d-md-table-cell">-</td>
-		<td class="d-none d-sm-table-cell">-</td>
-		<td>-</td>
-	</tr >`;
-        tableBody.insertAdjacentHTML('beforeend', defaultRow);
-    };
-    dataToRender.forEach((entry) => {
-        const row = rowText(entry.url, entry.chapter, entry.date, entry.size, toText);
-        tableBody.insertAdjacentHTML('beforeend', row);
-    });
-} 
+    tableBody.innerHTML = backButton ?
+        `<tr>
+            <td><a class="fname" href="${backButton}"><i class="fa fa-level-up fa-fw"></i> ..</a></td>
+            <td class="d-none d-md-table-cell">-</td>
+            <td class="d-none d-sm-table-cell">-</td>
+            <td>-</td>
+        </tr>` :
+        "";
+
+    data.forEach(entry =>
+        tableBody.insertAdjacentHTML('beforeend',
+            rowText(entry.url, entry.title, entry.date, entry.size, entry.total, entry.status, reason)
+        )
+    );
+}
 
 
-function searchAndRender(inputElement, reason, backButton, searchData = null) {
+function filterData(searchTerm, data) {
+    return Object.keys(data)
+        .filter(title => title.toLowerCase().includes(searchTerm))
+        .map(title => ({ title, ...data[title] }));
+}
+
+
+function searchAndRender(inputElement, reason, backButton = null, searchData = reason === "chapter" ? data : dataDir) {
     const searchTerm = inputElement.value.trim().toLowerCase();
-    const sourceData = searchData || data;
-    const filteredData = Object.keys(sourceData).filter(chapter =>
-        chapter.toLowerCase().includes(searchTerm)
-    ).map(chapter => ({
-        chapter,
-        ...sourceData[chapter]
-    }));
-
-    renderTable(filteredData, reason, backButton);
+    renderTable(filterData(searchTerm, searchData), reason, backButton);
 }
 
 
 function renderAllData(reason, backButton) {
-    const sourceData = reason === "dir" ? dataDir : data;
-    const allData = Object.keys(sourceData).map(chapter => ({
-        chapter,
-        ...sourceData[chapter]
-    }));
-
-    renderTable(allData, reason, backButton);
+    const sourceData = reason === "chapter" ? data : dataDir;
+    renderTable(filterData("", sourceData), reason, backButton);
 }
 
 
