@@ -1,4 +1,5 @@
-const data ={
+data ={
+    ...data,
     "Chapter 2400": {
         "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-2400",
         "date": "2024-01-01",
