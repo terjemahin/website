@@ -85,14 +85,12 @@ function rowText(url, title, date, size = null, total = null, status = null, rea
     const isChapterOrDir = ["chapter", "dir"].includes(reason);
     const icon = isChapterOrDir ? (reason === "chapter" ? "fa-file-code-o" : "fa-folder-open") : "fa-folder-open";
     const action = isChapterOrDir
-        ? `<a href="${url}" class="btn btn-sm btn-outline-primary" onclick="${reason === "chapter" ? "downloadFile" : "downloadZip"}(this.href); return false;">
+        ? `<a href="${url}" class="btn btn-sm btn-outline-primary" title="Download" onclick="${reason === "chapter" ? "downloadFile" : "downloadZip"}(this.href); return false;">
                 <i class="fa fa-download fa-fw"></i>
            </a>`
         : "";
-
     const copyLink = isChapterOrDir
-        ? `<a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" title="Copy Link"
-                onclick="navigator.clipboard.writeText('${url}')">
+        ? `<a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" title="Copy Link" onclick="navigator.clipboard.writeText('${url}')">
                 <i class="fa fa-link fa-fw"></i>
            </a>`
         : "";
@@ -107,8 +105,10 @@ function rowText(url, title, date, size = null, total = null, status = null, rea
                 <i class="fa ${icon} fa-fw"></i> ${title}</a>
         </td>
         <td class="d-none d-md-table-cell">${date}</td>
-        <td class="d-none d-sm-table-cell">${isChapterOrDir ? size : total}</td>
-        <td>${copyLink} ${action} ${!isChapterOrDir ? status || "" : ""}</td>
+        <td${isChapterOrDir ? ' class="d-none d-sm-table-cell"' : ""}>${isChapterOrDir ? size : total}</td>
+        <td${!isChapterOrDir ? ' class="d-none d-sm-table-cell"' : ""}>
+            ${isChapterOrDir ? copyLink + action : status || ""}
+        </td>
     </tr>`;
 }
 
