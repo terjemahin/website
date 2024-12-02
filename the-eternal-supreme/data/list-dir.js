@@ -8,5 +8,10 @@ const dataDir = {
         "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-0001-0100",
         "date": "2024-01-01",
         "size": " 84.85 KB"
+    },
+    "Chapter 0101-0200": {
+        "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-0101-0200",
+        "date": "2024-01-01",
+        "size": " 84.85 KB"
     }
 };
