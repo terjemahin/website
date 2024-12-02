@@ -1,4 +1,4 @@
-const data = {
+const dataDir = {
     "Chapter 2399-2400": {
         "url": "https://terjemahin.github.io/website/the-eternal-supreme/chapter-2399-2400",
         "date": "2024-01-01",
