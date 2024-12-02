@@ -1,3 +1,33 @@
+let data = {}; // Variabel global untuk menyimpan data
+
+function mergeData(sources) {
+    return new Promise((resolve, reject) => {
+        let loadedScripts = 0;
+
+        sources.forEach((src, index) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.async = false;
+
+            // Ketika script selesai dimuat
+            script.onload = () => {
+                loadedScripts++;
+                if (loadedScripts === sources.length) {
+                    resolve(data); // Kembalikan data setelah semua file selesai dimuat
+                }
+            };
+
+            // Tangani error jika file gagal dimuat
+            script.onerror = () => {
+                reject(new Error(`Failed to load script: ${src}`));
+            };
+
+            document.body.appendChild(script);
+        });
+    });
+}
+
+
 function downloadZip(url) {
     const zip = new JSZip();
     const files = [];
@@ -102,41 +132,43 @@ function renderTable(dataToRender, toText, backButton = null) {
 } 
 
 
-function searchAndRender(inputElement, reason, backButton) {
-    const searchTerm = inputElement.value.toLowerCase();
-    const filteredData = Object.keys(data)
-        .filter(chapter => chapter.toLowerCase().includes(searchTerm))
-        .map(chapter => ({
-            chapter: chapter,
-            url: data[chapter].url,
-            date: data[chapter].date,
-            size: data[chapter].size
-        }));
+function searchAndRender(inputElement, reason, backButton, searchData = null) {
+    const searchTerm = inputElement.value.trim().toLowerCase();
+    const sourceData = searchData || data;
+    const filteredData = Object.keys(sourceData).filter(chapter =>
+        chapter.toLowerCase().includes(searchTerm)
+    ).map(chapter => ({
+        chapter,
+        ...sourceData[chapter]
+    }));
 
     renderTable(filteredData, reason, backButton);
 }
 
 
 function renderAllData(reason, backButton) {
-    const allData = Object.keys(data).map(chapter => ({
-        chapter: chapter,
-        url: data[chapter].url,
-        date: data[chapter].date,
-        size: data[chapter].size
+    const sourceData = reason === "dir" ? dataDir : data;
+    const allData = Object.keys(sourceData).map(chapter => ({
+        chapter,
+        ...sourceData[chapter]
     }));
 
     renderTable(allData, reason, backButton);
+}
 
-    const searchInputs = [
-        { input: document.getElementById('searchInput-lg'), button: document.getElementById('searchButton-lg') },
-        { input: document.getElementById('searchInput-sm'), button: document.getElementById('searchButton-sm') }
-    ];
+
+function findRow(reason, backButton, searchData) {
+    const searchInputs = ['lg', 'sm'].map(size => ({
+        input: document.getElementById(`searchInput-${size}`),
+        button: document.getElementById(`searchButton-${size}`)
+    }));
 
     searchInputs.forEach(({ input, button }) => {
-        const searchHandler = () => searchAndRender(input, reason, backButton);
+        const searchHandler = () => {
+            input.value.trim() ? searchAndRender(input, reason, backButton, searchData) : location.reload();
+        };
+
         button.addEventListener('click', searchHandler);
-        input.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') searchHandler();
-        });
+        input.addEventListener('keydown', event => event.key === "Enter" && searchHandler());
     });
 }
