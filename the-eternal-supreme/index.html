@@ -60,7 +60,16 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 		<script src="../assets/tools.js"></script>
 		<script src="data/list-dir.js"></script>
-		<script type="text/javascript">renderAllData('dir', '..');</script>
+		<script type="text/javascript">
+			renderAllData('dir', '..')
+			mergeData(['data/0001-0100.js', 'data/0101-0200.js'])
+				.then(mergedData => {
+					findRow('chapter', '..', mergedData)
+				})
+				.catch(error => {
+					console.error("Error:", error);
+				});
+		</script>
 	</div>
 </body>
 
