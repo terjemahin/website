@@ -228,7 +228,7 @@ function closeSidebar() {
 // JSON-content url link
 const dropdown = document.getElementById('dropdown');
 const jsonContent = document.getElementById('jsonContent');
-const jsonUrl = 'https://raw.githubusercontent.com/terjemahin/website/refs/heads/main/assets/data.json';
+const jsonUrl = 'https://raw.githubusercontent.com/terjemahin/website/refs/heads/main/the-eternal-supreme/data/data.json';
 
 async function loadJsonData() {
     try {
