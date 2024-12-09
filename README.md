@@ -17,7 +17,7 @@ Tidak ada aturan apapun! asalkan terjemahan **sesuai dengan cerita aslinya**. Se
 ---
 
 ## Syarat dan Ketentuan  
-- Pastikan bagian tag raw= (**RAW English**) tidak ada yang diubah untuk mempermudah yang lain.
+- Pastikan bagian atribut raw= (**RAW English**) tidak ada yang diubah untuk mempermudah yang lain.
 - Boleh mirror boleh download boleh boleh boleh apapun boleh, asal jangan diberi iklan, di sini hanya untuk YGGA (yg gabut-gabut aja) bukan cari duit!! 
 
 Selamat berkontribusi, dan mari bersama-sama membuat proyek ini lebih baik! 🚀  
