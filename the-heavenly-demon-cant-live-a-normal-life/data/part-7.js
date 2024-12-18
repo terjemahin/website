@@ -1,0 +1,18 @@
+data = {
+    ...data,
+    "Chapter 601": {"url": "chapter-601-the-last-calamity-7", "date": "2024-12-12", "size": "47.0 KB"},
+    "Chapter 602": {"url": "chapter-602-disembarkation-1", "date": "2024-12-12", "size": "39.0 KB"},
+    "Chapter 603": {"url": "chapter-603-disembarkation-2", "date": "2024-12-12", "size": "39.4 KB"},
+    "Chapter 604": {"url": "chapter-604-expedition-3", "date": "2024-12-12", "size": "45.9 KB"},
+    "Chapter 605": {"url": "chapter-605-disembarkation-4", "date": "2024-12-12", "size": "43.0 KB"},
+    "Chapter 606": {"url": "chapter-606-disembarkation-5", "date": "2024-12-12", "size": "43.1 KB"},
+    "Chapter 607": {"url": "chapter-607-disembarkation-6", "date": "2024-12-12", "size": "42.2 KB"},
+    "Chapter 608": {"url": "chapter-608-disembarkation-7", "date": "2024-12-12", "size": "43.6 KB"},
+    "Chapter 609": {"url": "chapter-609-disembarkation-8", "date": "2024-12-12", "size": "55.5 KB"},
+    "Epilogue 1": {"url": "epilogue-the-beginning-not-the-end-1", "date": "2024-12-12", "size": "41.2 KB"},
+    "Epilogue 2": {"url": "epilogue-the-beginning-not-the-end-2", "date": "2024-12-12", "size": "39.5 KB"},
+    "Epilogue 3": {"url": "epilogue-the-beginning-not-the-end-3", "date": "2024-12-12", "size": "42.7 KB"},
+    "Epilogue 4": {"url": "epilogue-the-beginning-not-the-end-4", "date": "2024-12-12", "size": "44.5 KB"},
+    "Epilogue 5": {"url": "epilogue-the-beginning-not-the-end-5", "date": "2024-12-12", "size": "41.8 KB"},
+    "Epilogue 6": {"url": "epilogue-the-beginning-not-the-end-6", "date": "2024-12-12", "size": "43.1 KB"},
+};
