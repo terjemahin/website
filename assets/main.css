@@ -1,0 +1,72 @@
+.dirlist tbody td,.dirlist thead th{
+	padding: .55rem 1rem;
+	min-height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	vertical-align: middle;
+	border-width: 0;
+    border-bottom: 1px solid #eee;
+}
+.dirlist thead th{
+	padding: .75rem 1rem;
+	background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.dirlist {
+	border: 1px solid rgba(0,0,0,.125);
+}
+.fname{
+	width:520px;
+  	overflow: hidden;
+	white-space: nowrap;
+	color: #24292f;
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	text-decoration: none;
+	word-wrap: break-word;
+}
+
+i.fa-folder-open {
+	flex-shrink: 0;
+}
+
+td {
+	padding: 10px;
+}
+
+@media screen and (max-width: 992px) {
+	.fname{
+		width:380px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.fname{
+		width:unset;
+		white-space: unset;
+	}
+}
+.fname .fa {
+	color: #57606a;
+}
+.fname .fa-folder-open{
+	color: #368edb;
+}
+.fname .fa-level-up{
+	color: #e1a50e;
+}
+.btn-sm{
+	padding: .12rem .24rem;
+	font-size: .765rem;
+	margin: 0 .18rem;
+}
+.center-block {
+    margin: 0 auto;
+    float: none;
+    padding: 0;
+}
+@media screen and (min-width: 576px) {
+	.col-form-label{
+		text-align: right;
+	}
+}

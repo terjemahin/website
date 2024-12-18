@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Baca Novel Bahasa Indonesia di Terjemahin.website</title>
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0.css" />
+    <link rel="stylesheet" href="assets/bootstrap-4.6.1.css" />
+    <link rel="stylesheet" href="assets/main.css" />
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white border-bottom" id="navbar">
+      <div class="container big-nav">
+        <a class="navbar-brand" href="#">
+          <img src="assets/images-logo.png" width="200" height="50" class="d-inline-block align-top mr-2" alt="" />
+        </a>
+
+        <div class="collapse navbar-collapse" style="justify-content: flex-end" id="navbarSupportedContent">
+          <div class="form-inline my-2 my-lg-0 d-none d-lg-flex">
+            <input
+              id="searchInput-lg"
+              name="s"
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search here..."
+              aria-label="Search"
+              value="" />
+            <button id="searchButton-lg" class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              let's go!
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container" id="main">
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="form d-block d-lg-none">
+            <div class="input-group mb-3">
+              <input
+                id="searchInput-sm"
+                name="s"
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search here..."
+                aria-label="Search"
+                value="" />
+              <div class="input-group-append">
+                <button id="searchButton-sm" class="btn btn-outline-primary" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  let's go!
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="text-truncate">
+            Breadcrumb Trail:
+            <a href="https://terjemahin.website/">Master</a>
+            /
+          </p>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <table class="table table-hover dirlist" id="list" style="table-layout: fixed; width: 100%">
+            <thead>
+              <tr>
+                <th style="width: 55%">Title Novel</th>
+                <th class="d-none d-md-table-cell" style="width: 18%">Last updated</th>
+                <th style="width: 15%">Total chapter</th>
+                <th class="d-none d-sm-table-cell" style="width: 20%">Status</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <script src="assets/tools.js"></script>
+      <script src="assets/title.js"></script>
+      <script type="text/javascript">
+        renderAllData("main");
+        findRow("main");
+      </script>
+    </div>
+  </body>
+</html>
