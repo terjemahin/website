@@ -414,8 +414,8 @@ elements.themeBtn.addEventListener("click", () => {
 
 function reloadDisqusTheme(theme) {
   var disqus_config = function () {
-    this.page.url = PAGE_URL;
-    this.page.identifier = PAGE_IDENTIFIER;
+    this.page.url = window.location.href;
+    this.page.identifier = location.pathname;
     this.theme = theme;
   };
 
