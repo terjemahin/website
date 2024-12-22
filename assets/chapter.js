@@ -412,19 +412,6 @@ elements.themeBtn.addEventListener("click", () => {
   reloadDisqusTheme(theme);
 });
 
-function reloadDisqusTheme(theme) {
-  var disqus_config = function () {
-    this.page.url = window.location.href;
-    this.page.identifier = location.pathname;
-    this.theme = theme;
-  };
-
-  DISQUS.reset({
-    reload: true,
-    config: disqus_config,
-  });
-}
-
 // Tooltip
 let tooltipEnabled = elements.tooltips.bool === null ? true : elements.tooltips.bool === "true";
 
@@ -713,4 +700,24 @@ replaceTextInParagraphs();
   s.src = "https://terjemahin.disqus.com/embed.js";
   s.setAttribute("data-timestamp", +new Date());
   (d.head || d.body).appendChild(s);
+  window.disqus_config = createDisqusConfig();
 })();
+
+function createDisqusConfig(theme = null) {
+  const [novel, chapter] = window.location.pathname.split("/").slice(-2);
+  const formattedTitle = `${novel.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} - Chapter ${chapter.match(/\d+/)}`;
+
+  return function () {
+    this.page.url = window.location.href;
+    this.page.identifier = location.pathname;
+    this.page.title = formattedTitle;
+    if (theme) this.theme = theme;
+  };
+}
+
+function reloadDisqusTheme(theme) {
+  DISQUS.reset({
+    reload: true,
+    config: createDisqusConfig(theme),
+  });
+}
