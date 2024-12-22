@@ -705,7 +705,7 @@ replaceTextInParagraphs();
 
 function createDisqusConfig(theme = null) {
   const [novel, chapter] = window.location.pathname.split("/").slice(-2);
-  const formattedTitle = `${novel.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} - Chapter ${chapter.match(/\d+/)}`;
+  const formattedTitle = `${novel.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} - ${chapter.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`;
 
   return function () {
     this.page.url = window.location.href;
