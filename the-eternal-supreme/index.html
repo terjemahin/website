@@ -81,7 +81,8 @@
       <script src="../assets/tools.js"></script>
       <script src="data/list-dir.js"></script>
       <script type="text/javascript">
-        renderAllData("dir", "..");
+        const ver2 = `<tr><td class="d-none d-md-table-cell"><a class="fname" href="/the-eternal-supreme/2" title="VERSI 2"><i class="fa fa-folder-open fa-fw"></i>VERSI 2</a></td><td class="d-table-cell d-md-none"><a class="fname" href="/the-eternal-supreme/2"><i class="fa fa-folder-open fa-fw"></i>VERSI 2</a></td><td class="d-none d-md-table-cell">2024-12-12</td><td class="d-none d-sm-table-cell">-</td><td>-</td></tr>`;
+        renderAllData("dir", "..", ver2);
         mergeData(Array.from({ length: 25 }, (_, i) => `data/part-${i + 1}.js`))
           .then((mergedData) => {
             findRow("chapter", "..", mergedData);
