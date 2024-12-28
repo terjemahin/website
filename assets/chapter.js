@@ -693,6 +693,33 @@ function replaceTextInParagraphs() {
 
 replaceTextInParagraphs();
 
+// Custom Alert
+const script = document.createElement("script");
+script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+document.head.appendChild(script);
+
+script.onload = () => {
+  const path = window.location.href.split("/");
+  if (path[3] === "the-eternal-supreme" && path[4] !== "2" && parseInt(localStorage.getItem("modal") || "0") < 2) {
+    let count = parseInt(localStorage.getItem("modal") || "0");
+    localStorage.setItem("modal", count +1);
+    Swal.fire({
+      title:
+        "<span style='color: #ff000096'>Hey tampan!!</span><br>Novel ini sekarang ada VERSI 2 nya!!!<br><span style='color: #f9d9d9ba'>CEK HALAMAN AWAL !!</span>",
+      width: 600,
+      padding: "2em",
+      color: "rgba(32, 3, 3, 0.79)",
+      background: "#fff url(../assets/cover.png) center center / cover no-repeat",
+      confirmButtonColor: "rgb(238, 0, 0)",
+      backdrop: "rgba(200, 18, 18, 0.4)",
+      showConfirmButton: false,
+      customClass: {
+        popup: "custom-popup",
+      },
+    });
+  }
+};
+
 // Disqus-comment
 (() => {
   const d = document;
