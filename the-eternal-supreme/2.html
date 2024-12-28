@@ -83,10 +83,10 @@
       <script src="../assets/tools.js"></script>
       <script src="data/list-dir-2.js"></script>
       <script type="text/javascript">
-        renderAllData("dir", "..");
+        renderAllData("dir", "/the-eternal-supreme");
         mergeData(Array.from({ length: 42 - 26 + 1 }, (_, i) => `data/part-${i + 26}.js`))
           .then((mergedData) => {
-            findRow("chapter", "..", mergedData);
+            findRow("chapter", "/the-eternal-supreme", mergedData);
           })
           .catch((error) => {
             console.error("Error:", error);
