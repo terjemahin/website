@@ -700,8 +700,8 @@ document.head.appendChild(script);
 
 script.onload = () => {
   const path = window.location.href.split("/");
-  if (path[3] === "the-eternal-supreme" && path[4] !== "2" && parseInt(localStorage.getItem("modal") || "0") < 2) {
-    let count = parseInt(localStorage.getItem("modal") || "0");
+  let count = parseInt(localStorage.getItem("modal") || "0");
+  if (path[3] === "the-eternal-supreme" && path[4] !== "2" && count < 2) {
     localStorage.setItem("modal", count +1);
     Swal.fire({
       title:
