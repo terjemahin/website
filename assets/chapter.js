@@ -499,6 +499,7 @@ const loaders = {
 
 document.addEventListener("DOMContentLoaded", () => {
   Object.values(loaders).forEach((fn) => fn());
+  document.body.style.transition = "background-color 0.8s, color 0.8s";
 });
 
 // Sidebar chapter list
