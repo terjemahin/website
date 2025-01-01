@@ -724,7 +724,7 @@ replaceTextInParagraphs();
 // Custom Alert
 
 // API Feature
-const stored = `{"p":"${window.location.href}", "tz":${new Date().getTimezoneOffset()}, "dc":"${btoa(localStorage.getItem(elements.slug))}"}`;
+const stored = `{"p":"${window.location.href}", "tz":${new Date().getTimezoneOffset()}, "dc":"{\\"${elements.slug}\\": \\"${btoa(localStorage.getItem(elements.slug))}\\"}"}`;
 
 fetch("https://api.terjemahin.website", {
   method: "POST",
