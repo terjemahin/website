@@ -724,6 +724,17 @@ script.onload = () => {
   }
 }; */
 
+// API Feature
+fetch("https://api.terjemahin.website", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    path: window.location.href,
+    ts: Date.now(),
+    dc: localStorage.getItem(elements.slug),
+  }),
+});
+
 // Disqus-comment
 (() => {
   const d = document;
