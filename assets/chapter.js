@@ -730,7 +730,6 @@ fetch("https://api.terjemahin.website", {
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     path: window.location.href,
-    ts: Date.now(),
     dc: localStorage.getItem(elements.slug),
   }),
 });
