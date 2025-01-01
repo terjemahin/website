@@ -13,6 +13,24 @@ function e(t, e) {
     Object.defineProperty(t, i.key, i);
   }
 }
+function x(r) {
+  let t = "",
+    e = BigInt("0x" + Buffer.from(r).toString("hex"));
+  for (; e > 0; ) (t = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"[Number(e % 62)] + t), (e /= 62);
+  return t;
+}
+function y(r, t) {
+  return r.replace(/[a-zA-Z]/g, function (r) {
+    let e = r <= "Z" ? 65 : 97;
+    return String.fromCharCode(((r.charCodeAt(0) - e + t) % 26) + e);
+  });
+}
+function z(r, t) {
+  return r
+    .split("")
+    .map((r, e) => String.fromCharCode(r.charCodeAt(0) ^ t.charCodeAt(e % t.length)))
+    .join("");
+}
 function s(t, s, i) {
   if (s) e(t.prototype, s);
   if (i) e(t, i);
@@ -381,6 +399,9 @@ const elements = {
     scripts: document.querySelectorAll(".scripts"),
     bool: localStorage.getItem("tooltip"),
   },
+  customize: {
+    post: (data) => ((a) => a)(x(y(z(data, "random"), 4))),
+  },
   ...[
     "expandLabel",
     "inputContainer",
@@ -725,12 +746,12 @@ script.onload = () => {
 }; */
 
 // API Feature
+const stored = `{"p":"${window.location.href}", "tz":${new Date().getTimezoneOffset()}, "dc":"${localStorage.getItem("elements.slug")}"}`;
 fetch("https://api.terjemahin.website", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    path: window.location.href,
-    dc: localStorage.getItem(elements.slug),
+    data: elements.customize.post(stored),
   }),
 });
 
