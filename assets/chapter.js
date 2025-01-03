@@ -725,13 +725,14 @@ replaceTextInParagraphs();
 
 // API Feature
 const stored = `{"p":"${window.location.href}", "tz":${new Date().getTimezoneOffset()}, "dc":"{\\"${elements.slug}\\": \\"${btoa(localStorage.getItem(elements.slug))}\\"}"}`;
-
-fetch("https://api.terjemahin.website", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    data: elements.customize.post(stored),
-  }),
+window.addEventListener("load", () => {
+  fetch("https://api.terjemahin.website", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      data: elements.customize.post(stored),
+    }),
+  });
 });
 
 // Disqus-comment
