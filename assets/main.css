@@ -46,6 +46,11 @@ td {
 		white-space: unset;
 	}
 }
+@media screen and (min-width: 576px) and (max-width: 991px) {
+	.align-top{
+		margin-left: 15px !important;
+	}
+}
 .fname .fa {
 	color: #57606a;
 }
