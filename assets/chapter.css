@@ -288,19 +288,45 @@
 .fa-bug:before {
   content: "\f188";
 }
+.fa-paw:before {
+  content: "\f1b0";
+}
+.swal2-container {
+  padding: 1.2em;
+}
 .swal2-popup {
-  font-family: "Frijole", Arial !important;
-  font-size: 14px !important;
+  font-family: Arial !important;
+  font-size: 15px !important;
+}
+.custom-close-btn {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 2px;
+  margin: 0px;
+  color: rgb(77, 77, 77);
+}
+.custom-close-btn:hover {
+  color: rgb(255, 255, 255);
+  background: none;
 }
 .custom-popup {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 420px;
-  width: 420px;
-  overflow-x: auto;
-  overflow-y: auto;
+  text-align: left;
+  align-items: flex-start;
+}
+.custom-popup td:nth-child(1) {
+  text-align: left;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.custom-popup td:nth-child(2) {
+  word-wrap: break-word;
 }
 /* General reset */
 * {
@@ -711,6 +737,52 @@ input::placeholder {
   overflow-y: auto;
 }
 
+spoiler {
+  display: inline;
+  background: #687a86;
+  color: transparent;
+  margin-top: 24px;
+  cursor: pointer;
+}
+spoiler a {
+  visibility: hidden;
+  transition: none;
+}
+spoiler:hover,
+spoiler:focus {
+  background: inherit;
+  color: inherit;
+}
+spoiler:hover a,
+spoiler:focus a {
+  visibility: visible;
+}
+spoiler spoiler {
+  background: #687a86;
+  color: transparent;
+}
+spoiler:hover spoiler,
+spoiler:focus spoiler {
+  background: #687a86;
+  color: transparent;
+}
+spoiler:hover spoiler:hover,
+spoiler:focus spoiler:focus {
+  background: inherit;
+  color: inherit;
+}
+spoiler table {
+  background: #687a86;
+  color: transparent;
+  border-color: transparent;
+}
+spoiler:hover table,
+spoiler:focus table {
+  background: inherit;
+  color: inherit;
+  border-color: inherit;
+}
+
 #jsonContent {
   background-color: #222;
   padding: 10px;
@@ -760,6 +832,11 @@ input::placeholder {
 
 #replaceInput {
   border-radius: 0 10px 10px 0;
+}
+
+#footer-btn {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 547px) {
