@@ -404,6 +404,10 @@
           </p>
         </div>
         <hr />
+        <script>
+          localStorage.setItem("temp", localStorage.getItem("tl-note"));
+          localStorage.setItem("tl-note", 0);
+        </script>
         <div id="tl-note">
           <span style="float: left">TL Note:</span>
           <span style="float: right"><i class="fa fa-times close-tl"></i></span>
